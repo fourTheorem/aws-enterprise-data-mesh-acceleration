@@ -22,12 +22,13 @@ Over time, **a data platform architecture could result in frustrated data consum
 ## The 4 principles of Data Mesh
 The 4 principles of Data Mesh are shown below:  
 ![Data Mesh principles](images/4principles.png)
-Source: https://www.datamesh-architecture.com
 
+Source: https://www.datamesh-architecture.com
 
 Data Mesh is an effective pattern for enterprises that wish to move to a serverless / microservice architecture using Domain Driven Design. It moves some of the responsibility for data from centralised data teams to the **data producers**. This aligns with the first two principles of Data Mesh: **Domain Ownership** and **Data as a Product**. The data producers are the data owners, data is no longer seen as a byproduct of a domain and becomes a first-class citizen of the domain, in the same way that API contracts are.
 
 To enable a Data Mesh strategy, the domain teams need systems and tooling to enable them to publish data. This is where the last two principles of Data Mesh: **Self-serve Data Platform** and **Federated Governance** comes in. These are enabled by a platform team, and allow the data producers to publish data, and to grant access to data. The various roles involved in a Data Mesh strategy are shown below. In many organisations, these roles may be combined.
+
 ![Data Mesh architecture](images/datamesh_arch.png)
 
 - **Governance Group**: This is a centralised team that creates the central governance and compliance rules for an organisation.
