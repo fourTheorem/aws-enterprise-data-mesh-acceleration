@@ -10,3 +10,6 @@ notes: redo image, add layer descriptions, replace Power B.I., data consumer lin
  - Amazon Athena: This allows consumers to access data through an SQL interface.
  - AWS Glue Data Catalog: The AWS Glue Data Catalog is a technical data catalog that stores meta-data (e.g. table definitions, s3 locations) of data in the Data Mesh.
 
+![Data Mesh implementation](images/datamesh_aws.png)
+
+From "Data Engineering with AWS - Second Edition", Packt Publishing 2023

@@ -2,7 +2,7 @@
 
 **Data Mesh is an architectural framework that solves advanced data security challenges through distributed, decentralised ownership.**  
 
-Organisations have multiple data sources from different lines of business that must be integrated for analytics. A Data Mesh architecture effectively unites disparate data sources and links them together through centrally managed data sharing and governance guidelines. Business functions can control how shared data is accessed, who accesses it, and in what formats it’s accessed. A Data Mesh adds complexities to architecture but also brings efficiency by improving data access, security, and scalability.
+Organisations have multiple data sources from different lines of business that must be integrated for analytics. A Data Mesh architecture unites disparate data sources and links them together through centrally managed data sharing and governance guidelines. Business functions own and can control how shared data is accessed and who is granted access to the data. A Data Mesh adds complexities to architecture but also brings efficiency by improving data access, security, and scalability.
 
 
 ## What challenges does Data Mesh solve?
@@ -12,7 +12,7 @@ Historically, organisations have often utilised a central team of data engineers
 3. **Reduced accuracy:** Business units are disconnected from the data consumers and the central data teams. As a result, they lack the incentive to provide meaningful, correct, and useful data.
 
 ## What are the benefits of Data Mesh?
-Over time, **a data platform architecture could result in frustrated data consumers, disconnected data producers, and an overloaded data management team.** Data Mesh architecture attempts to solve these challenges by empowering business units to have high autonomy and ownership of their data domain. The benefits of Data Mesh architecture include:
+Organisations have not got value from existing data platforms, such as enterprise data warehouses and data lakes. This has resulted in frustrated data consumers, disconnected data producers, and overloaded data management teams. Data Mesh architecture attempts to solve these challenges by empowering business units to have high autonomy and ownership of their data domain. The benefits of Data Mesh architecture include:
 - **Democratic data processing:** A Data Mesh transfers data control to domain experts who create meaningful data products within a decentralised governance framework. Data consumers also request access to the data products and seek approvals or changes directly from data owners. As a result, everyone gets faster access to relevant data, and faster access improves business agility.
 - **Increased flexibility:** Centralised data infrastructure is more complex and requires collaboration to maintain and modify. Instead, the Data Mesh reorganizes the technical implementation of the central system to the business domains. This removes central data pipelines and reduces operational bottlenecks and technical strains on the system.
 - **Cost efficiency:** Distributed data architecture moves away from batch processing, instead promoting real-time data streaming adoption. You improve visibility into resource allocation and storage costs, resulting in better budgeting and reduced costs.
@@ -29,6 +29,12 @@ Data Mesh is an effective pattern for enterprises that wish to move to a serverl
 
 To enable a Data Mesh strategy, the domain teams need systems and tooling to enable them to publish data. This is where the last two principles of Data Mesh: **Self-serve Data Platform** and **Federated Governance** comes in. These are enabled by a platform team, and allow the data producers to publish data, and to grant access to data. The various roles involved in a Data Mesh strategy are shown below. In many organisations, these roles may be combined.
 
+It is important to realise that the Data Mesh architecture is an organisation-wide approach to managing and sharing data across an enterprise. It means a shift in roles and responsibilities. Domain teams have ownership of the data they produce, therefore they are responsible for data publishing and data governance (within the organisation guidelines). A central data engineering team now becomes an enabling team that provides templates, tools and support in a data platform team. If you are interested in learning more about these new roles and responsibilities, then the original blog posts on the data mesh architecture are worth reading
+- ![Monolithic Data Lake to Data Mesh](https://martinfowler.com/articles/data-monolith-to-mesh.html)
+- ![Data Mesh Principles and Logical Architecture](https://martinfowler.com/articles/data-mesh-principles.html)
+
+## Data Mesh architecture
+The diagram below shows a Data Mesh architecture:  
 ![Data Mesh architecture](images/datamesh_arch.png)
 
 - **Governance Group**: This is a centralised team that creates the central governance and compliance rules for an organisation.
