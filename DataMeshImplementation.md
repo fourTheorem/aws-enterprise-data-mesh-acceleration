@@ -1,6 +1,7 @@
 # Implementing a Data Mesh in AWS
 
 ![Data Mesh implementation](images/datamesh_impl.png)
+
 notes: redo image, add layer descriptions, replace Power B.I., data consumer link to layer, include link from Jupyter to s3
 
 - **Data Consumption layer**: The data consumption layer allows data consumers to access the data products through the whatever tools they are comfortable with, e.g. Business Intelligence tools such as Amazon QuickSight or Power B.I., SQL tools such as Amazon Athena or direct access to raw data from Jupyter notebooks.
