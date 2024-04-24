@@ -1,0 +1,9 @@
+{
+    "athena_db": "datalake_dev",
+    "source_csv1": "raw/life_assurance_dataset.csv", 
+    "target_parquet1": "business/life_assurance", 
+    "athena_table_name1": "life_assurance",
+    "source_csv2": "raw/motor_insurance_dataset.csv",
+    "target_parquet2": "business/motor_insurance", 
+    "athena_table_name2": "motor_insurance"
+}

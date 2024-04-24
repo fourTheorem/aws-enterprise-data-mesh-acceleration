@@ -1,0 +1,109 @@
+service: fourtheorem-create-data-lake
+
+frameworkVersion: '3'
+
+plugins:
+  - serverless-step-functions
+  - serverless-s3-sync
+
+custom:
+  s3Sync:
+    - bucketNameKey: DataLakeBucketKey
+      bucketPrefix: raw/
+      localDir: ./data/raw
+
+provider:
+  name: aws
+  runtime: python3.10
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'eu-west-1'}
+  environment:
+    STAGE: ${sls:stage}
+    SERVICE_NAME: ${self:service}
+
+resources:
+  Resources:
+    DataLakeBucket:
+      Type: AWS::S3::Bucket	
+    ETLParams:
+      Type: AWS::SSM::Parameter
+      Properties:
+        Name: /${self:provider.stage}/${self:service}/etl_params
+        Description: ETL Params
+        Type: String
+        Value: ${file(./params/${self:provider.stage}-etl-params.txt)}
+    LambdaRole:
+      Type: AWS::IAM::Role
+      Properties:
+        RoleName: ${self:service}-lamda-role-${self:provider.stage}
+        AssumeRolePolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Principal:
+                Service: lambda.amazonaws.com
+              Action:
+                - sts:AssumeRole
+        Policies:
+          - PolicyName: lambda-policy
+            PolicyDocument:
+              Version: '2012-10-17'
+              Statement:
+                - Effect: Allow
+                  Action:
+                    - glue:*
+                  Resource:
+                    - "*"
+                - Effect: Allow
+                  Action:
+                    - s3:ListBucket
+                  Resource:
+                    - !Sub 'arn:aws:s3:::${DataLakeBucket}'
+                - Effect: Allow
+                  Action:
+                    - s3:GetObject
+                  Resource:
+                    - !Sub 'arn:aws:s3:::${DataLakeBucket}/raw/*'
+                - Effect: Allow
+                  Action:
+                    - s3:PutObject
+                    - s3:DeleteObject
+                  Resource:
+                    - !Sub 'arn:aws:s3:::${DataLakeBucket}/business/*'
+                - Effect: Allow
+                  Action:
+                    - ssm:GetParameters
+                    - ssm:GetParameter
+                    - ssm:PutParameter
+                  Resource:
+                    - "arn:aws:ssm:${aws:region}:${aws:accountId}:parameter/${self:provider.stage}/*"
+
+  Outputs:
+    DataLakeBucketKey:
+      Value: !Ref DataLakeBucket
+
+functions:
+  step1:
+    handler: function_step1/step1.handle_event
+    name: ${self:service}-lambda-step1-${self:provider.stage}
+    environment:
+      s3_data_lake_bucket: !Ref DataLakeBucket
+    memorySize: 1024
+    timeout: 30
+    layers:
+      - arn:aws:lambda:${aws:region}:336392948345:layer:AWSSDKPandas-Python310:15
+    role: LambdaRole
+    package:
+      individually: true
+      patterns:
+        - '!README.md'
+        - '!data/**'
+        - '!images/**'
+        - '!params/**'
+        - '!sf/**'
+
+stepFunctions:
+  validate: true
+  stateMachines:
+      step_job: ${file(./sf/create-data-lake.yml)}
+
